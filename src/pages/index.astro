@@ -11,6 +11,12 @@ import CTA from '../components/cta.astro'
 import coverSVG from '../assets/svg/undraw/undraw_design_inspiration.svg'
 import socialImage from '../assets/undraw/undraw_design_inspiration.png'
 
+import {SignIn, SignOut} from "auth-astro/components"; 
+import {getSession} from "auth-astro/server"; 
+
+const session = await getSession(Astro.request);
+console.log(session);
+
 const frontmatter: CollectionEntry<'page'>['data'] = {
   title: SiteMetadata.title,
   description: SiteMetadata.description,
@@ -26,6 +32,11 @@ const latestPosts = posts.sort((a, b) => +b.data.publishDate - +a.data.publishDa
 
 <Base frontmatter={frontmatter}>
   <Hero />
+  <section class="p-5 flex justify-center">
+
+    {session ? <SignOut class='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow'>Sign out</SignOut> : <SignIn class='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow' provider="google">Sign in</SignIn>}
+    
+  </section>
   <Features />
   <FindOutMore />
   <LatestArticles posts={latestPosts} />

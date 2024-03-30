@@ -80,6 +80,18 @@ const social = defineCollection({
   })
 })
 
+const propiedad = defineCollection({
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string().optional(),      
+      publishDate: z.date().optional(),
+      images: z.array(image()).optional(),
+      comunas: z.array(z.string()).optional(),
+      tags: z.array(z.string()).optional(),
+     })
+})
+
 // 3. Export multiple collections to register them
 export const collections = {
   blog,
@@ -87,5 +99,6 @@ export const collections = {
   doc,
   category,
   author,
-  social
+  social,
+  propiedad
 }

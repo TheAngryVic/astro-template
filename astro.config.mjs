@@ -11,8 +11,10 @@ import remarkPlantUML from '@akebifiky/remark-simple-plantuml';
 import { remarkReadingTime } from './remark-plugins/remark-reading-time.mjs';
 import { remarkDiagram } from './remark-plugins/remark-diagram.mjs';
 import icon from "astro-icon";
-
 import markdoc from "@astrojs/markdoc";
+import auth from "auth-astro";
+
+import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,9 +24,9 @@ export default defineConfig({
       noExternal: ['swiper', 'leaflet']
     }
   },
-  site: 'https://hellotham.github.io',
-  base: '/hello-astro/',
-  integrations: [icon(), tailwind(), sitemap(), mdx(), alpinejs(), robotsTxt(), markdoc()],
+  // site: 'https://hellotham.github.io',
+  base: '/',
+  integrations: [icon(), tailwind(), sitemap(), mdx(), alpinejs(), robotsTxt(), markdoc(), auth()],
   markdown: {
     extendDefaultPlugins: true,
     remarkPlugins: [remarkReadingTime, remarkMath, remarkPlantUML, remarkDiagram, remarkEmoji],
@@ -34,7 +36,9 @@ export default defineConfig({
       langs: [],
       // Enable word wrap to prevent horizontal scrolling
       wrap: true
-    },
+    }
   },
   scopedStyleStrategy: "where",
+  output: "server",
+  adapter: vercel()
 });

@@ -25,7 +25,7 @@ export const SiteMetadata = {
       'Hello Tham is a boutique management consulting firm. We specialise in Business and IT strategies, operating models, strategic roadmaps, enterprise architecture, analytics and business process design.'
   },
   location: 'Rivendell, Middle Earth',
-  latlng: [-33.86785, 151.20732] as [number, number],
+  latlng: [-33.57018038645922, -70.5488771625124] as [number, number],
   repository: 'https://github.com/hellotham/hello-astro',
   buildTime: new Date()
 }
